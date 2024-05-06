@@ -9,9 +9,9 @@ import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.*;
 import net.minecraft.particle.ParticleTypes;
-import net.minecraft.registry.tag.TagKey;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.tag.TagKey;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
@@ -50,7 +50,7 @@ public abstract class HoeItemMixin extends MiningToolItem {
 
                 if(!player.hasStatusEffect(ModStatusEffects.BONEMEALCOOLDOWN) && player.isSneaking()  && boneMealCount < bonemealLevel && !player.isCreative() || player.hasStatusEffect(ModStatusEffects.BONEMEALCOOLDOWN) && player.isSneaking()  && !player.isCreative() ){
                     if (player instanceof ServerPlayerEntity serverPlayer) {
-                        ServerWorld serverWorld = serverPlayer.getServerWorld();
+                        ServerWorld serverWorld = serverPlayer.getWorld();
                         for (int i = 0; i < 10; i++) {
                             Vec3d motion = new Vec3d(Math.cos(i) * 0.25d, 0.5d, Math.sin(i) * 0.25d);
                             serverWorld.spawnParticles(ParticleTypes.ANGRY_VILLAGER,
@@ -111,7 +111,7 @@ public abstract class HoeItemMixin extends MiningToolItem {
     private static boolean useOnFertilizable(ItemStack stack, World world, BlockPos pos) {
         Fertilizable fertilizable;
         BlockState blockState = world.getBlockState(pos);
-        if (blockState.getBlock() instanceof Fertilizable && (fertilizable = (Fertilizable) blockState.getBlock()).isFertilizable(world, pos, blockState)) {
+        if (blockState.getBlock() instanceof Fertilizable && (fertilizable = (Fertilizable) blockState.getBlock()).isFertilizable(world, pos, blockState, world.isClient)) {
             if (world instanceof ServerWorld) {
                 if (fertilizable.canGrow(world, world.random, pos, blockState)) {
                     fertilizable.grow((ServerWorld)world, world.random, pos, blockState);

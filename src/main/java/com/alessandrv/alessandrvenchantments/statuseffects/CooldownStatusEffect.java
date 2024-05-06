@@ -16,6 +16,4 @@ public class CooldownStatusEffect extends StatusEffect {
         // In our case, we just make it return true so that it applies the status effect every tick.
         return false;
     }
-
-
 }

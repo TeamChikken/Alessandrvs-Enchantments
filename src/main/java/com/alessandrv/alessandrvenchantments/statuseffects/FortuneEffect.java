@@ -9,6 +9,4 @@ public class FortuneEffect extends StatusEffect {
     public FortuneEffect() {
         super(StatusEffectCategory.BENEFICIAL, 0xFFD800);
     }
-
-
 }

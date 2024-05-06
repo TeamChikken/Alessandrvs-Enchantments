@@ -18,6 +18,4 @@ public abstract class LivingEntityMixin {
     @Shadow public abstract Map<StatusEffect, StatusEffectInstance> getActiveStatusEffects();
 
     @Shadow public abstract boolean hasStatusEffect(StatusEffect effect);
-
-
 }
