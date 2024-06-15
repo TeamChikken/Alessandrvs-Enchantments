@@ -35,7 +35,7 @@ public class CustomExplosion extends Explosion {
     }
 
     public DamageSource getDamageSource() {
-        return null;
+        return DamageSource.explosion(this);
     }
 
     public void DamageEntities() {

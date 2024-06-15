@@ -25,7 +25,7 @@ public class DieTwiceStatusEffect extends StatusEffect {
     @Override
     public boolean canApplyUpdateEffect(int duration, int amplifier) {
         // In our case, we just make it return true so that it applies the status effect every tick.
-        return false;
+        return true;
     }
     private static double f;
     private static double g;
